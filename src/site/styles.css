@@ -1,34 +1,41 @@
 /* Dark theme overrides for tiny-brutalism-css
    Loaded after CDN stylesheet — same or lower specificity wins via cascade */
 
+:root {
+  --bg:      #0a0a0a;
+  --text:    #e8e8e8;
+  --muted:   #aaa;
+  --dim:     #555;
+  --text-sm: 0.8rem;
+  --text-xs: 0.75rem;
+}
+
 /* Base */
 html, body {
-  background-color: #0a0a0a;
-  color: #e8e8e8;
+  background-color: var(--bg);
+  color: var(--text);
 }
 
 /* Links */
 a {
-  color: #e8e8e8;
+  color: var(--text);
 }
 a:hover {
-  color: #aaa;
+  color: var(--muted);
 }
 
 /* Terminal window */
 .terminal {
   position: fixed;
-  top: 2rem;
-  bottom: 2rem;
+  top: 0;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 4rem);
-  max-width: 680px;
+  max-width: 850px;
   font-family: 'Roboto Mono', monospace;
   font-size: 0.875rem;
-  border: 1px solid #333;
-  background: #0a0a0a;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  background: var(--bg);
   display: flex;
   flex-direction: column;
 }
@@ -40,22 +47,20 @@ a:hover {
   padding: 0.6rem 1rem;
   background: #1a1a1a;
   border-bottom: 1px solid #2a2a2a;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
-.terminal-dots { display: flex; gap: 6px; }
-.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
-.dot-red    { background: #ff5f57; }
-.dot-yellow { background: #febc2e; }
-.dot-green  { background: #28c840; }
-.terminal-title { position: absolute; left: 50%; transform: translateX(-50%); color: #555; font-size: 0.75rem; }
+.terminal-dots { display: none; }
+.terminal-title { position: absolute; left: 50%; transform: translateX(-50%); color: var(--dim); font-size: var(--text-xs); }
 .terminal-body { padding: 1rem 2rem 1.5rem; line-height: 1.5; flex: 1; overflow-y: auto; scrollbar-width: none; }
 .terminal-body::-webkit-scrollbar { display: none; }
-.out { color: #aaa; padding-left: 0.5rem; }
+.out { color: var(--muted); padding-left: 0.5rem; }
 .cursor { animation: blink 1s step-end infinite; display: inline-block; }
 
 /* MOTD banner */
 .banner { margin-bottom: 0.75rem; }
-.banner-last-login { color: #555; font-size: 0.75rem; margin-bottom: 0.25rem; }
-.banner-ascii { color: #555; margin: 0; padding: 0; line-height: 1.2; font-size: 0.78rem; white-space: pre; font-family: inherit; }
+.banner-last-login { color: var(--dim); font-size: var(--text-xs); margin-bottom: 0.25rem; }
+.banner-ascii { color: var(--dim); margin: 0; padding: 0; line-height: 1.2; font-size: 0.78rem; white-space: pre; font-family: inherit; }
 .banner-sep { color: #333; margin-top: 0.4rem; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
@@ -67,7 +72,7 @@ a:hover {
 .command::before,
 .command-end::before {
   content: '$ ';
-  color: #555;
+  color: var(--dim);
 }
 .log + .command,
 .command-end {
@@ -113,29 +118,34 @@ a:hover {
   overflow: hidden;
 }
 .project-row .project-name {
-  color: #aaa;
+  color: var(--muted);
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: var(--text-sm);
   min-width: 7.5rem;
   flex-shrink: 0;
   text-decoration: underline dashed;
 }
-.project-row .project-name:hover { color: #aaa; }
+.project-row .project-name:hover { color: var(--muted); }
 .project-row .project-desc {
-  color: #555;
-  font-size: 0.75rem;
+  color: var(--dim);
+  font-size: var(--text-xs);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
+/* Mobile: full-bleed terminal */
+@media (max-width: 600px) {
+  .terminal { width: 100%; }
+}
+
 /* About / cat output */
 .about-block { padding-left: 0.5rem; }
 .exp-list { display: flex; flex-direction: column; gap: 0.25rem; }
-.exp-row { font-size: 0.8rem; line-height: 1.5; }
-.exp-org { color: #e8e8e8; }
-.exp-year { color: #555; }
-.exp-detail { color: #666; font-size: 0.75rem; line-height: 1.5; padding-left: 0.5rem; }
+.exp-row { font-size: var(--text-sm); line-height: 1.5; }
+.exp-org { color: var(--text); }
+.exp-year { color: var(--dim); }
+.exp-detail { color: #666; font-size: var(--text-xs); line-height: 1.5; padding-left: 0.5rem; }
 .contact-links { display: flex; gap: 1rem; }
-.contact-links a { color: #aaa; font-size: 0.8rem; text-decoration: underline dashed; }
+.contact-links a { color: var(--muted); font-size: var(--text-sm); text-decoration: underline dashed; }
 
