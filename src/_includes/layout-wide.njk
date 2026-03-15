@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="color-scheme" content="dark">
   <title>{{ title }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pruger/tiny-brutalism-css/tiny-brutalism.css">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   {% include "header.njk" %}
   <div class="container">
-    <div style="margin-bottom:1.5rem">
-      <a href="/" style="font-size:0.875rem;text-decoration:none;color:#555">← layertwo.dev</a>
-    </div>
+    <a href="/" class="back-link">← layertwo.dev</a>
     {{ content | safe }}
   </div>
 </body>

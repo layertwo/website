@@ -3,7 +3,7 @@
 
 /* Base */
 html, body {
-  background-color: #0d0d0d;
+  background-color: #0a0a0a;
   color: #e8e8e8;
 }
 
@@ -106,17 +106,19 @@ input, textarea, select {
 .project-name { color: #e8e8e8; font-weight: 700; font-size: 0.8rem; }
 .project-lang { color: #555; font-size: 0.7rem; align-self: flex-start; }
 .project-desc { color: #666; font-size: 0.75rem; flex: 1; margin-bottom: 6px; line-height: 1.5; }
-.project-link { color: #aaa; font-size: 0.75rem; text-decoration: underline; text-decoration-style: dashed; }
+.project-link { color: #aaa; font-size: 0.75rem; text-decoration: underline dashed; }
 
 /* About / cat output */
 .about-block { padding-left: 1rem; margin-bottom: 4px; }
 .about-bio { color: #aaa; margin-bottom: 0.75rem; line-height: 1.6; max-width: 480px; }
 .section-label { color: #555; font-size: 0.75rem; margin-bottom: 4px; }
 .exp-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.75rem; }
-.exp-entry {}
 .exp-row { font-size: 0.8rem; line-height: 1.5; }
 .exp-org { color: #e8e8e8; }
 .exp-year { color: #555; }
 .exp-detail { color: #666; font-size: 0.75rem; line-height: 1.5; padding-left: 0.5rem; }
 .contact-links { display: flex; gap: 1rem; }
-.contact-links a { color: #aaa; font-size: 0.8rem; text-decoration: underline; text-decoration-style: dashed; }
+.contact-links a { color: #aaa; font-size: 0.8rem; text-decoration: underline dashed; }
+
+/* Layout */
+.back-link { display: block; margin-bottom: 1.5rem; font-size: 0.875rem; text-decoration: none; color: #555; }
