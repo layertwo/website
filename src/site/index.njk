@@ -26,14 +26,14 @@ layout: false
     </div>
     <div class="terminal-body">
 
-    <div><span class="prompt">$ </span>whoami</div>
-    <div class="out">lucas messenger — security engineer @ aws</div>
+    <div class="command">whoami</div>
+    <div class="log out">lucas messenger — security engineer @ aws</div>
 
-    <div class="cmd-gap"><span class="prompt">$ </span>cat about.txt</div>
-    <div class="about-block">
-      <div class="about-bio">Security engineer focused on detection engineering, telemetry, and automation. Currently at AWS building response tools and AI-powered tooling.</div>
+    <div class="command">cat about.txt</div>
+    <div class="log out">Security engineer focused on detection engineering, telemetry, and automation. Currently at AWS building response tools and AI-powered tooling.</div>
 
-      <div class="section-label">// experience</div>
+    <div class="command">cat experience.txt</div>
+    <div class="log about-block">
       <div class="exp-list">
         <div class="exp-entry">
           <div class="exp-row"><span class="exp-org">AWS · Security Engineer, OpRes</span> <span class="exp-year">2025–present</span></div>
@@ -52,31 +52,30 @@ layout: false
           <div class="exp-detail">Network security appliances · cloud deployments · sustaining engineering</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-label">// contact</div>
+    <div class="command">cat contact.txt</div>
+    <div class="log about-block">
       <div class="contact-links">
         <a href="https://github.com/layertwo" target="_blank" rel="noopener">github</a>
         <a href="https://linkedin.com/in/lmessenger" target="_blank" rel="noopener">linkedin</a>
       </div>
     </div>
 
-    <div class="cmd-gap"><span class="prompt">$ </span>ls skills/</div>
-    <div class="out">python · aws · kubernetes · splunk · detection-engineering · fastmcp · smithy · cdk</div>
+    <div class="command">ls skills/</div>
+    <div class="log out">python · aws · kubernetes · splunk · detection-engineering · fastmcp · smithy · cdk</div>
 
-    <div class="cmd-gap"><span class="prompt">$ </span>ls projects/</div>
-    <div class="project-grid">
+    <div class="command">ls projects/</div>
+    <div class="log project-list">
       {% for project in projects %}
-      <div class="project-card">
-        <div class="project-card-header">
-          <span class="project-name">{{ project.name }}</span>
-        </div>
-        <div class="project-desc">{{ project.description }}</div>
-        <a href="{{ project.url }}" class="project-link" target="_blank" rel="noopener">→ github</a>
+      <div class="project-row">
+        <a href="{{ project.url }}" class="project-name" target="_blank" rel="noopener">{{ project.name }}</a>
+        <span class="project-desc">{{ project.description }}</span>
       </div>
       {% endfor %}
     </div>
 
-    <div class="cmd-gap"><span class="prompt">$ </span><span class="cursor">▌</span></div>
+    <div class="command-end"><span class="cursor">▌</span></div>
 
     </div><!-- terminal-body -->
   </div>

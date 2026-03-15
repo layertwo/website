@@ -15,53 +15,22 @@ a:hover {
   color: #aaa;
 }
 
-/* Buttons — outlined, compact */
-button, .button {
-  background-color: transparent;
-  color: #e8e8e8;
-  border-color: #e8e8e8;
-  box-shadow: 3px 3px 0 #e8e8e8;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.875rem;
-}
-button:hover, .button:hover {
-  background-color: #e8e8e8;
-  color: #0d0d0d;
-  box-shadow: 5px 5px 0 #aaa;
-}
-
-/* Boxes */
-.box {
-  background-color: #111;
-  border-color: #444;
-  box-shadow: 4px 4px 0 #444;
-}
-
-/* Form elements */
-input, textarea, select {
-  background-color: #111;
-  color: #e8e8e8;
-  border-color: #444;
-}
-
-/* Misc */
-.progress {
-  background-color: #222;
-  border-color: #444;
-}
-.alert {
-  border-color: #444;
-}
-
 /* Terminal window */
 .terminal {
+  position: fixed;
+  top: 2rem;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 4rem);
   max-width: 680px;
-  margin: 2rem auto;
   font-family: 'Roboto Mono', monospace;
   font-size: 0.875rem;
   border: 1px solid #333;
   background: #0a0a0a;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
 }
 .terminal-titlebar {
   display: flex;
@@ -77,42 +46,84 @@ input, textarea, select {
 .dot-yellow { background: #febc2e; }
 .dot-green  { background: #28c840; }
 .terminal-title { color: #555; font-size: 0.75rem; flex: 1; text-align: center; }
-.terminal-body { padding: 1rem 2rem 1.5rem; line-height: 1.9; }
-.prompt { color: #555; }
-.out { color: #aaa; padding-left: 1rem; margin-bottom: 4px; }
-.cmd-gap { margin-top: 0.75rem; }
+.terminal-body { padding: 1rem 2rem 1.5rem; line-height: 1.5; flex: 1; overflow-y: auto; scrollbar-width: none; }
+.terminal-body::-webkit-scrollbar { display: none; }
+.out { color: #aaa; padding-left: 0.5rem; }
 .cursor { animation: blink 1s step-end infinite; display: inline-block; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Projects grid */
-.project-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
-  padding-left: 1rem;
-  margin-bottom: 4px;
+/* Terminal typewriter animation — clip-path never affects layout, no gaps */
+.command {
+  white-space: nowrap;
+  overflow: hidden;
 }
-.project-card {
-  border: 1px solid #2a2a2a;
-  padding: 8px;
+.command::before,
+.command-end::before {
+  content: '$ ';
+  color: #555;
+}
+.log + .command,
+.command-end {
+  margin-top: 0.75rem;
+}
+
+@keyframes type-command {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0%   0 0); }
+}
+@keyframes reveal-log {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0%   0); }
+}
+@keyframes appear-prompt {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* One complete animation declaration per element */
+.terminal-body > :nth-child(1)  { animation: type-command  0.7s  0.5s  linear both; } /* whoami */
+.terminal-body > :nth-child(2)  { animation: reveal-log    0.4s  1.4s  ease   both; } /* whoami out */
+.terminal-body > :nth-child(3)  { animation: type-command  0.7s  2.0s  linear both; } /* cat about.txt */
+.terminal-body > :nth-child(4)  { animation: reveal-log    0.5s  2.9s  ease   both; } /* bio */
+.terminal-body > :nth-child(5)  { animation: type-command  0.9s  3.6s  linear both; } /* cat experience.txt */
+.terminal-body > :nth-child(6)  { animation: reveal-log    0.7s  4.7s  ease   both; } /* experience */
+.terminal-body > :nth-child(7)  { animation: type-command  0.7s  5.6s  linear both; } /* cat contact.txt */
+.terminal-body > :nth-child(8)  { animation: reveal-log    0.4s  6.5s  ease   both; } /* contact */
+.terminal-body > :nth-child(9)  { animation: type-command  0.6s  7.1s  linear both; } /* ls skills/ */
+.terminal-body > :nth-child(10) { animation: reveal-log    0.4s  7.9s  ease   both; } /* skills out */
+.terminal-body > :nth-child(11) { animation: type-command  0.7s  8.5s  linear both; } /* ls projects/ */
+.terminal-body > :nth-child(12) { animation: reveal-log    0.7s  9.4s  ease   both; } /* projects list */
+.terminal-body > :nth-child(13) { animation: appear-prompt 0.3s 10.3s  ease   both; } /* cursor prompt */
+
+/* Projects list */
+.project-list { padding-left: 1rem; }
+.project-row {
   display: flex;
-  flex-direction: column;
+  gap: 1.5rem;
+  align-items: baseline;
+  line-height: 1.5;
+  overflow: hidden;
 }
-.project-card-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 4px;
+.project-row .project-name {
+  color: #e8e8e8;
+  font-weight: 700;
+  font-size: 0.8rem;
+  min-width: 7.5rem;
+  flex-shrink: 0;
+  text-decoration: none;
 }
-.project-name { color: #e8e8e8; font-weight: 700; font-size: 0.8rem; }
-.project-lang { color: #555; font-size: 0.7rem; align-self: flex-start; }
-.project-desc { color: #666; font-size: 0.75rem; flex: 1; margin-bottom: 6px; line-height: 1.5; }
-.project-link { color: #aaa; font-size: 0.75rem; text-decoration: underline dashed; }
+.project-row .project-name:hover { color: #aaa; }
+.project-row .project-desc {
+  color: #555;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* About / cat output */
-.about-block { padding-left: 1rem; margin-bottom: 4px; }
-.about-bio { color: #aaa; margin-bottom: 0.75rem; line-height: 1.6; }
-.section-label { color: #555; font-size: 0.75rem; margin-bottom: 4px; }
-.exp-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.75rem; }
+.about-block { padding-left: 0.5rem; }
+.exp-list { display: flex; flex-direction: column; gap: 0.25rem; }
 .exp-row { font-size: 0.8rem; line-height: 1.5; }
 .exp-org { color: #e8e8e8; }
 .exp-year { color: #555; }
@@ -120,5 +131,3 @@ input, textarea, select {
 .contact-links { display: flex; gap: 1rem; }
 .contact-links a { color: #aaa; font-size: 0.8rem; text-decoration: underline dashed; }
 
-/* Layout */
-.back-link { display: block; margin-bottom: 1.5rem; font-size: 0.875rem; text-decoration: none; color: #555; }
