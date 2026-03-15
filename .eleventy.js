@@ -3,8 +3,8 @@ module.exports = async function(eleventyConfig) {
   return {
     dir: {
       input: "src/site",
-      output: "../dist",
-      includes: "../_includes",
+      output: "dist",
+      includes: "_includes",
     },
     templateFormats : ["njk", "md"],
     htmlTemplateEngine : "njk",
