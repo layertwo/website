@@ -33,6 +33,7 @@ a:hover {
   flex-direction: column;
 }
 .terminal-titlebar {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -45,7 +46,7 @@ a:hover {
 .dot-red    { background: #ff5f57; }
 .dot-yellow { background: #febc2e; }
 .dot-green  { background: #28c840; }
-.terminal-title { color: #555; font-size: 0.75rem; flex: 1; text-align: center; }
+.terminal-title { position: absolute; left: 50%; transform: translateX(-50%); color: #555; font-size: 0.75rem; }
 .terminal-body { padding: 1rem 2rem 1.5rem; line-height: 1.5; flex: 1; overflow-y: auto; scrollbar-width: none; }
 .terminal-body::-webkit-scrollbar { display: none; }
 .out { color: #aaa; padding-left: 0.5rem; }
@@ -105,12 +106,12 @@ a:hover {
   overflow: hidden;
 }
 .project-row .project-name {
-  color: #e8e8e8;
-  font-weight: 700;
+  color: #aaa;
+  font-weight: 400;
   font-size: 0.8rem;
   min-width: 7.5rem;
   flex-shrink: 0;
-  text-decoration: none;
+  text-decoration: underline dashed;
 }
 .project-row .project-name:hover { color: #aaa; }
 .project-row .project-desc {
