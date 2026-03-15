@@ -1,0 +1,37 @@
+[
+  {
+    "name": "homelab",
+    "language": "Python",
+    "description": "Self-hosted infra on a 3-node K3s cluster managed with Flux GitOps. Media, home automation, photos, and auth.",
+    "tags": ["Kubernetes", "Flux", "Traefik", "TrueNAS"],
+    "url": "https://github.com/layertwo/homelab"
+  },
+  {
+    "name": "groundwork",
+    "language": "Python",
+    "description": "Self-service AWS account factory. Teams provision accounts on-demand with federated OIDC — no long-lived credentials.",
+    "tags": ["FastAPI", "CDK", "OIDC", "Postgres"],
+    "url": "https://github.com/layertwo/groundwork"
+  },
+  {
+    "name": "cortex",
+    "language": "Python",
+    "description": "Zero-knowledge encrypted cloud backup. Server never sees your data — ChaCha20-Poly1305 encryption, client-side only.",
+    "tags": ["Lambda", "DynamoDB", "React", "Cognito"],
+    "url": "https://github.com/layertwo/cortex"
+  },
+  {
+    "name": "ffsync",
+    "language": "Python",
+    "description": "Serverless self-hosted Firefox Sync on AWS. Own your bookmarks, history, and passwords.",
+    "tags": ["DynamoDB", "KMS", "CDK"],
+    "url": "https://github.com/layertwo/ffsync"
+  },
+  {
+    "name": "connections",
+    "language": "Python",
+    "description": "CLI tool that turns JSON flight data into interactive airport route maps. Deploys to AWS CloudFront.",
+    "tags": ["Plotly", "Click", "CloudFront"],
+    "url": "https://github.com/layertwo/connections"
+  }
+]

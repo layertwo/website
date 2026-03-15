@@ -1,0 +1,24 @@
+---
+title: Projects
+layout: layout-wide.njk
+---
+
+<div class="row">
+  {% for project in projects %}
+  <div class="col col-4">
+    <div class="box" style="display:flex;flex-direction:column;height:100%">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+        <strong>{{ project.name }}</strong>
+        <span style="border:1px solid;padding:2px 6px;font-size:0.8em">{{ project.language }}</span>
+      </div>
+      <p style="flex:1;font-size:0.875em">{{ project.description }}</p>
+      <div style="margin-bottom:0.75rem">
+        {% for tag in project.tags %}
+        <span style="border:1px solid;padding:1px 5px;font-size:0.75em;margin-right:4px">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      <a href="{{ project.url }}" class="button" style="margin-top:auto">→ GitHub</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
