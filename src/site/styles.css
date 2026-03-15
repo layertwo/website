@@ -51,6 +51,12 @@ a:hover {
 .terminal-body::-webkit-scrollbar { display: none; }
 .out { color: #aaa; padding-left: 0.5rem; }
 .cursor { animation: blink 1s step-end infinite; display: inline-block; }
+
+/* MOTD banner */
+.banner { margin-bottom: 0.75rem; }
+.banner-last-login { color: #555; font-size: 0.75rem; margin-bottom: 0.25rem; }
+.banner-ascii { color: #555; margin: 0; padding: 0; line-height: 1.2; font-size: 0.78rem; white-space: pre; font-family: inherit; }
+.banner-sep { color: #333; margin-top: 0.4rem; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 /* Terminal typewriter animation — clip-path never affects layout, no gaps */
@@ -82,19 +88,20 @@ a:hover {
 }
 
 /* One complete animation declaration per element */
-.terminal-body > :nth-child(1)  { animation: type-command  0.7s  0.5s  linear both; } /* whoami */
-.terminal-body > :nth-child(2)  { animation: reveal-log    0.4s  1.4s  ease   both; } /* whoami out */
-.terminal-body > :nth-child(3)  { animation: type-command  0.7s  2.0s  linear both; } /* cat about.txt */
-.terminal-body > :nth-child(4)  { animation: reveal-log    0.5s  2.9s  ease   both; } /* bio */
-.terminal-body > :nth-child(5)  { animation: type-command  0.9s  3.6s  linear both; } /* cat experience.txt */
-.terminal-body > :nth-child(6)  { animation: reveal-log    0.7s  4.7s  ease   both; } /* experience */
-.terminal-body > :nth-child(7)  { animation: type-command  0.7s  5.6s  linear both; } /* cat contact.txt */
-.terminal-body > :nth-child(8)  { animation: reveal-log    0.4s  6.5s  ease   both; } /* contact */
-.terminal-body > :nth-child(9)  { animation: type-command  0.6s  7.1s  linear both; } /* ls skills/ */
-.terminal-body > :nth-child(10) { animation: reveal-log    0.4s  7.9s  ease   both; } /* skills out */
-.terminal-body > :nth-child(11) { animation: type-command  0.7s  8.5s  linear both; } /* ls projects/ */
-.terminal-body > :nth-child(12) { animation: reveal-log    0.7s  9.4s  ease   both; } /* projects list */
-.terminal-body > :nth-child(13) { animation: appear-prompt 0.3s 10.3s  ease   both; } /* cursor prompt */
+/* :nth-child(1) is .banner — no animation, appears immediately */
+.terminal-body > :nth-child(2)  { animation: type-command  0.7s  0.5s  linear both; } /* whoami */
+.terminal-body > :nth-child(3)  { animation: reveal-log    0.4s  1.4s  ease   both; } /* whoami out */
+.terminal-body > :nth-child(4)  { animation: type-command  0.7s  2.0s  linear both; } /* cat about.txt */
+.terminal-body > :nth-child(5)  { animation: reveal-log    0.5s  2.9s  ease   both; } /* bio */
+.terminal-body > :nth-child(6)  { animation: type-command  0.9s  3.6s  linear both; } /* cat experience.txt */
+.terminal-body > :nth-child(7)  { animation: reveal-log    0.7s  4.7s  ease   both; } /* experience */
+.terminal-body > :nth-child(8)  { animation: type-command  0.7s  5.6s  linear both; } /* cat contact.txt */
+.terminal-body > :nth-child(9)  { animation: reveal-log    0.4s  6.5s  ease   both; } /* contact */
+.terminal-body > :nth-child(10) { animation: type-command  0.6s  7.1s  linear both; } /* ls skills/ */
+.terminal-body > :nth-child(11) { animation: reveal-log    0.4s  7.9s  ease   both; } /* skills out */
+.terminal-body > :nth-child(12) { animation: type-command  0.7s  8.5s  linear both; } /* ls projects/ */
+.terminal-body > :nth-child(13) { animation: reveal-log    0.7s  9.4s  ease   both; } /* projects list */
+.terminal-body > :nth-child(14) { animation: appear-prompt 0.3s 10.3s  ease   both; } /* cursor prompt */
 
 /* Projects list */
 .project-list { padding-left: 1rem; }
