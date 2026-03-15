@@ -52,3 +52,71 @@ input, textarea, select {
 .alert {
   border-color: #444;
 }
+
+/* Terminal window */
+.terminal {
+  max-width: 680px;
+  margin: 4rem auto;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.875rem;
+  border: 1px solid #333;
+  background: #0a0a0a;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.terminal-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 1rem;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+}
+.terminal-dots { display: flex; gap: 6px; }
+.dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
+.dot-red    { background: #ff5f57; }
+.dot-yellow { background: #febc2e; }
+.dot-green  { background: #28c840; }
+.terminal-title { color: #555; font-size: 0.75rem; flex: 1; text-align: center; }
+.terminal-body { padding: 1.5rem 2rem; line-height: 1.9; }
+.prompt { color: #555; }
+.out { color: #aaa; padding-left: 1rem; margin-bottom: 4px; }
+.cmd-gap { margin-top: 0.75rem; }
+.cursor { animation: blink 1s step-end infinite; display: inline-block; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* Projects grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  padding-left: 1rem;
+  margin-bottom: 4px;
+}
+.project-card {
+  border: 1px solid #2a2a2a;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.project-name { color: #e8e8e8; font-weight: 700; font-size: 0.8rem; }
+.project-lang { color: #555; font-size: 0.7rem; align-self: flex-start; }
+.project-desc { color: #666; font-size: 0.75rem; flex: 1; margin-bottom: 6px; line-height: 1.5; }
+.project-link { color: #aaa; font-size: 0.75rem; text-decoration: underline; text-decoration-style: dashed; }
+
+/* About / cat output */
+.about-block { padding-left: 1rem; margin-bottom: 4px; }
+.about-bio { color: #aaa; margin-bottom: 0.75rem; line-height: 1.6; max-width: 480px; }
+.section-label { color: #555; font-size: 0.75rem; margin-bottom: 4px; }
+.exp-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 0.75rem; }
+.exp-entry {}
+.exp-row { font-size: 0.8rem; line-height: 1.5; }
+.exp-org { color: #e8e8e8; }
+.exp-year { color: #555; }
+.exp-detail { color: #666; font-size: 0.75rem; line-height: 1.5; padding-left: 0.5rem; }
+.contact-links { display: flex; gap: 1rem; }
+.contact-links a { color: #aaa; font-size: 0.8rem; text-decoration: underline; text-decoration-style: dashed; }

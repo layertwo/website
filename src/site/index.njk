@@ -1,0 +1,83 @@
+---
+layout: false
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>layertwo.dev</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pruger/tiny-brutalism-css/tiny-brutalism.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal-titlebar">
+      <div class="terminal-dots">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+      </div>
+      <div class="terminal-title">layertwo.dev — zsh</div>
+    </div>
+    <div class="terminal-body">
+
+    <div><span class="prompt">$ </span>whoami</div>
+    <div class="out">lucas messenger — security engineer @ aws</div>
+
+    <div class="cmd-gap"><span class="prompt">$ </span>cat about.txt</div>
+    <div class="about-block">
+      <div class="about-bio">Security engineer focused on detection engineering, telemetry, and automation. Currently at AWS building response tools and AI-powered tooling.</div>
+
+      <div class="section-label">// experience</div>
+      <div class="exp-list">
+        <div class="exp-entry">
+          <div class="exp-row"><span class="exp-org">AWS · Security Engineer, OpRes</span> <span class="exp-year">2025–present</span></div>
+          <div class="exp-detail">Response automation · enrichment pipelines · MCP servers · AI tooling</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-row"><span class="exp-org">AWS · Security Engineer, Detection Engineering</span> <span class="exp-year">2021–2025</span></div>
+          <div class="exp-detail">Threat detections for 1.6M network devices · Splunk · Athena · SOAR platform</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-row"><span class="exp-org">Cisco · Information Security Engineer, CSIRT</span> <span class="exp-year">2019–2021</span></div>
+          <div class="exp-detail">Splunk infrastructure · network packet metadata · query optimization engine</div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-row"><span class="exp-org">Tempered Networks · Support Engineer</span> <span class="exp-year">2016–2019</span></div>
+          <div class="exp-detail">Network security appliances · cloud deployments · sustaining engineering</div>
+        </div>
+      </div>
+
+      <div class="section-label">// contact</div>
+      <div class="contact-links">
+        <a href="mailto:lmessenger@pm.me">lmessenger@pm.me</a>
+        <a href="https://github.com/layertwo" target="_blank" rel="noopener">github</a>
+        <a href="https://linkedin.com/in/lmessenger" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </div>
+
+    <div class="cmd-gap"><span class="prompt">$ </span>ls skills/</div>
+    <div class="out">python · aws · kubernetes · splunk · detection-engineering · fastmcp · smithy · cdk</div>
+
+    <div class="cmd-gap"><span class="prompt">$ </span>ls projects/</div>
+    <div class="project-grid">
+      {% for project in projects %}
+      <div class="project-card">
+        <div class="project-card-header">
+          <span class="project-name">{{ project.name }}</span>
+          <span class="project-lang">{{ project.language }}</span>
+        </div>
+        <div class="project-desc">{{ project.description }}</div>
+        <a href="{{ project.url }}" class="project-link" target="_blank" rel="noopener">→ github</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="cmd-gap"><span class="prompt">$ </span><span class="cursor">▌</span></div>
+
+    </div><!-- terminal-body -->
+  </div>
+</body>
+</html>
