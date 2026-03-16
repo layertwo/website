@@ -13,6 +13,8 @@ layout: false
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pruger/tiny-brutalism-css/tiny-brutalism.css">
   <link rel="stylesheet" href="/styles.css">
+  <script src="/terminal-banner.js"></script>
+  <script src="/terminal.js"></script>
 </head>
 <body>
   <div class="terminal">
@@ -37,14 +39,17 @@ layout: false
       <div class="banner-sep">────────────────────────────────</div>
     </div>
 
-    <div class="command">whoami</div>
-    <div class="log out">lucas messenger — security engineer @ aws</div>
+    <div class="log out">type 'ls' to explore or 'help' for all commands</div>
 
-    <div class="command">cat about.txt</div>
-    <div class="log out">Security engineer focused on detection engineering, telemetry, and automation. Currently at AWS building response tools and AI-powered tooling.</div>
+    <div class="command-end"><span class="current-input"></span><span class="cursor">▌</span></div>
 
-    <div class="command">cat experience.txt</div>
-    <div class="log about-block">
+    </div><!-- terminal-body -->
+  </div>
+
+  <div hidden>
+    <div class="log out" id="out-whoami">lucas messenger — security engineer @ aws</div>
+    <div class="log out" id="out-about">Security engineer focused on detection engineering, telemetry, and automation. Currently at AWS building response tools and AI-powered tooling.</div>
+    <div class="log about-block" id="out-experience">
       <div class="exp-list">
         <div class="exp-entry">
           <div class="exp-row"><span class="exp-org">AWS · Security Engineer, OpRes</span> <span class="exp-year">2025–present</span></div>
@@ -64,20 +69,14 @@ layout: false
         </div>
       </div>
     </div>
-
-    <div class="command">cat contact.txt</div>
-    <div class="log about-block">
+    <div class="log about-block" id="out-contact">
       <div class="contact-links">
         <a href="https://github.com/layertwo" target="_blank" rel="noopener">github</a>
         <a href="https://linkedin.com/in/lmessenger" target="_blank" rel="noopener">linkedin</a>
       </div>
     </div>
-
-    <div class="command">ls skills/</div>
-    <div class="log out">python · aws · kubernetes · splunk · detection-engineering · fastmcp · smithy · cdk</div>
-
-    <div class="command">ls projects/</div>
-    <div class="log project-list">
+    <div class="log out" id="out-skills">python · aws · kubernetes · splunk · detection-engineering · fastmcp · smithy · cdk</div>
+    <div class="log project-list" id="out-projects">
       {% for project in projects %}
       <div class="project-row">
         <a href="{{ project.url }}" class="project-name" target="_blank" rel="noopener">{{ project.name }}</a>
@@ -85,11 +84,6 @@ layout: false
       </div>
       {% endfor %}
     </div>
-
-    <div class="command-end"><span class="cursor">▌</span></div>
-
-    </div><!-- terminal-body -->
   </div>
-  <script src="/terminal-banner.js"></script>
 </body>
 </html>
