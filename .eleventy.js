@@ -1,6 +1,7 @@
 module.exports = async function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/site/styles.css");
   eleventyConfig.addPassthroughCopy("src/site/terminal-banner.js");
+  eleventyConfig.addPassthroughCopy("src/site/terminal.js");
   return {
     dir: {
       input: "src/site",
