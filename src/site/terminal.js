@@ -192,10 +192,8 @@
   function renderOutput(output) {
     if (output === null) return;
     if (typeof output === 'string') {
-      var el = document.createElement('div');
-      el.className = 'log out';
+      var el = makeLog(output);
       el.style.whiteSpace = 'pre';
-      el.textContent = output;
       appendToBody(el);
     } else {
       // DOM element returned by handler — strip animation classes before appending
@@ -237,6 +235,88 @@
     currentInputSpan = inputSpan;
     cursorSpan = cursor;
     if (hiddenInput) hiddenInput.focus();
+  }
+
+  // ─── SSH Sequence ─────────────────────────────────────────────────────────
+
+  function delay(ms) {
+    return new Promise(function (resolve) { setTimeout(resolve, ms); });
+  }
+
+  function typeInto(el, text, charDelay) {
+    return new Promise(function (resolve) {
+      var i = 0;
+      function next() {
+        if (i >= text.length) { resolve(undefined); return; }
+        el.textContent += text[i++];
+        setTimeout(next, charDelay);
+      }
+      next();
+    });
+  }
+
+  function prependSequence(el, bannerEl) {
+    bodyEl.insertBefore(el, bannerEl);
+    el.scrollIntoView({ block: 'nearest' });
+  }
+
+  function makeLog(text) {
+    var el = document.createElement('div');
+    el.className = 'log out';
+    el.textContent = text;
+    return el;
+  }
+
+  async function runSshSequence() {
+    var bannerEl = bodyEl.querySelector('.banner');
+    var hidden = Array.from(bodyEl.children).map(function (el) {
+      el.style.display = 'none';
+      return el;
+    });
+    var sshEls = [];
+    function addSeq(el) { sshEls.push(el); prependSequence(el, bannerEl); }
+    hiddenInput.disabled = true;
+    try {
+      var cmdEl = document.createElement('div');
+      cmdEl.className = 'command-end';
+      cmdEl.style.marginTop = '0.75rem';
+      var cmdSpan = document.createElement('span');
+      cmdEl.appendChild(cmdSpan);
+      addSeq(cmdEl);
+      await typeInto(cmdSpan, 'ssh root@layertwo.dev', 60);
+      await delay(200);
+
+      addSeq(makeLog("The authenticity of host 'layertwo.dev (203.0.113.42)' can't be established."));
+      await delay(300);
+
+      addSeq(makeLog('ED25519 key fingerprint is SHA256:Ab3xF+Kq2mR/nVsP8jYdGhEc4wTz0I6L7oBuN1fhXYz.'));
+      await delay(200);
+
+      addSeq(makeLog('This key is not known by any other names.'));
+      await delay(400);
+
+      var confirmEl = makeLog('Are you sure you want to continue connecting (yes/no/[fingerprint])? ');
+      addSeq(confirmEl);
+      await typeInto(confirmEl, 'yes', 120);
+      await delay(200);
+
+      addSeq(makeLog("Warning: Permanently added 'layertwo.dev' to the list of known hosts."));
+      await delay(200);
+
+      var pwdEl = makeLog("root@layertwo.dev's password: ");
+      addSeq(pwdEl);
+      await typeInto(pwdEl, '****', 200);
+      await delay(1000);
+
+    } finally {
+      sshEls.forEach(function (el) { el.parentNode && el.parentNode.removeChild(el); });
+      for (var i = 0; i < hidden.length; i++) {
+        hidden[i].style.display = '';
+        if (i < hidden.length - 1) await delay(80);
+      }
+      promptDiv.scrollIntoView({ block: 'nearest' });
+      hiddenInput.disabled = false;
+    }
   }
 
   // ─── Input Handler ────────────────────────────────────────────────────────
@@ -374,6 +454,8 @@
         terminal.removeEventListener('click', removehint);
       });
     }
+
+    runSshSequence().catch(console.error);
   }
 
   document.addEventListener('DOMContentLoaded', init);
