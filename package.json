@@ -13,5 +13,8 @@
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-plugin-bundle": "github:11ty/eleventy-plugin-bundle"
+  },
+  "allowScripts": {
+    "fsevents@2.3.3": true
   }
 }
